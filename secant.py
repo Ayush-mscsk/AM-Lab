@@ -24,7 +24,7 @@ def secant(x0, x1, decimal_places, max_iter):
         x2 = x1 - f1 * (x1 - x0) / (f1 - f0)
         f2 = f(x2)
         
-        if abs(f2) < error_precision:
+        if abs(f2) < error_precision and (x2-x1)<error_precision:
             x2_trunc = truncate(x2, decimal_places)
             print(f"\nRoot found at x = {x2_trunc} after {i} iterations")
             return x2
@@ -37,9 +37,10 @@ def secant(x0, x1, decimal_places, max_iter):
     return x1
 
 if __name__ == "__main__":
-    x0 = float(input("Enter first guess x0: "))
-    x1 = float(input("Enter second guess x1: "))
-    decimal_places = int(input("Enter how many decimal places accuracy (e.g. 3): "))
-    max_iter = int(input("Enter maximum number of iterations: "))
+    x0 = float(input("Enter first guess x0 (e.g. 4): "))
+    x1 = float(input("Enter second guess x1 (e.g. 2): "))
+    decimal_places = int(input("Enter how many decimal places accuracy (e.g. 2): "))
+    # max_iter = int(input("Enter maximum number of iterations: "))
+    max_iter = 100
 
     secant(x0, x1, decimal_places, max_iter)
