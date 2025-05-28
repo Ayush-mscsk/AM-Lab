@@ -2,6 +2,8 @@ import math
 
 def f(x):
     return x**2 -4*x - 10
+    # return x**3 -2*x - 5
+    # return x * math.exp(x) - math.cos(x)
 
 def truncate(number, decimals):
     factor = 10 ** decimals

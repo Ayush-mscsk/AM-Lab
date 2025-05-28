@@ -6,15 +6,15 @@ def truncate(number, decimals):
 
 
 def f(x):    
-    # return x**3 - 0.165 * x**2 + 3.993 * 10**-4
+    return x**3 - 0.165 * x**2 + 3.993 * 10**-4
     # return x**4 - 4
     # return 3*x - math.cos(x) - 1
-    return x * math.log10(x) - 1.2
+    # return x * math.log10(x) - 1.2
 def g(x):
-    # return 3 * x**2 - 2 * 0.165 * x
+    return 3 * x**2 - 2 * 0.165 * x
     # return 4 * x**3
     # return 3 + math.sin(x)
-    return math.log10(x) + (1 / (math.log(10)))
+    # return math.log10(x) + (1 / (math.log(10)))
 
 
 def newton_raphson(x0, decimal_places, max_iter):
