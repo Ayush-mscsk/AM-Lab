@@ -67,5 +67,6 @@ if __name__ == "__main__":
         decimal_places = int(input("Enter decimal place accuracy (e.g., 4): "))
         max_iter = 100
         newton_raphson(x0, decimal_places, max_iter)
+        
     except Exception as e:
         print("Error:", e)
