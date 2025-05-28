@@ -1,42 +1,20 @@
-def truncate(number, decimals):
-    factor = 10 ** decimals
-    return int(number * factor) / factor
+import sympy as sp
+import math
 
-# Define the function and its derivative
-def f(x):
-    return x**3 - 0.165 * x**2 + 3.993 * 10**-4
+# Step 1: Symbolic variable
+x = sp.Symbol('x')
 
-def g(x):
-    return 3 * x**2 - 2 * 0.165 * x
+# Step 2: Define the symbolic function
+f_expr = x * sp.log(x, 10) - 1.2
 
-def newton_raphson(x0, decimal_places, max_iter):
-    e = 10 ** -decimal_places
-    i = 1
+# Step 3: Derivative of the function
+g_expr = sp.diff(f_expr, x)
 
-    while i <= max_iter:
-        if g(x0) == 0:
-            print("Mathematical Error: Derivative is zero.")
-            return None
+# Step 4: Convert symbolic expressions to regular Python functions
+f = sp.lambdify(x, f_expr, modules='math')
+g = sp.lambdify(x, g_expr, modules='math')
 
-        x1 = x0 - f(x0) / g(x0)
-
-        if abs(f(x1)) <= e:
-            root = truncate(x1, decimal_places)
-            print(f"Root found: {root}")
-            return root
-
-        x0 = x1
-        i += 1
-
-    print("Not Convergent")
-    return None
-
-# Main block
-if __name__ == "__main__":
-    try:
-        x0 = float(input("Enter initial guess x0: "))
-        decimal_places = int(input("Enter how many decimal places accuracy (e.g. 3): "))
-        max_iter = int(input("Enter maximum number of iterations: "))
-        newton_raphson(x0, decimal_places, max_iter)
-    except ValueError:
-        print("Invalid input. Please enter numeric values.")
+# Example usage
+x_val = 2.0
+print("f(x) =", f_expr)
+print("g(x) =", g_expr)
